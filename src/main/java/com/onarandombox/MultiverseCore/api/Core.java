@@ -7,7 +7,6 @@
 
 package com.onarandombox.MultiverseCore.api;
 
-import buscript.Buscript;
 import com.onarandombox.MultiverseCore.commandtools.queue.CommandQueueManager;
 import com.onarandombox.MultiverseCore.destination.DestinationFactory;
 import com.onarandombox.MultiverseCore.utils.AnchorManager;
@@ -235,11 +234,4 @@ public interface Core {
      * @return The configuration.
      */
     MultiverseCoreConfig getMVConfig();
-
-    /**
-     * Gets the buscript object for Multiverse.  This is what handles Javascript processing.
-     *
-     * @return The Multiverse buscript object.
-     */
-    Buscript getScriptAPI();
 }

@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Level;
 
-import buscript.Buscript;
 import com.dumptruckman.minecraft.util.Logging;
 import com.onarandombox.MultiverseCore.MVWorld.NullLocation;
 import com.onarandombox.MultiverseCore.api.BlockSafety;
@@ -228,7 +227,6 @@ public class MultiverseCore extends JavaPlugin implements MVPlugin, Core {
     // HashMap to contain information relating to the Players.
     private HashMap<String, MVPlayerSession> playerSessions;
     private MVEconomist economist;
-    private Buscript buscript;
     private int pluginCount;
     private DestinationFactory destFactory;
     private MultiverseMessaging messaging;
@@ -359,19 +357,7 @@ public class MultiverseCore extends JavaPlugin implements MVPlugin, Core {
      * Initializes the buscript javascript library.
      */
     private void initializeBuscript() {
-        buscript = null;
 
-        if (this.getMVConfig().getEnableBuscript()) {
-            try {
-                buscript = new Buscript(this);
-                // Add global variable "multiverse" to javascript environment
-                buscript.setScriptVariable("multiverse", this);
-            } catch (NullPointerException e) {
-                Logging.warning("Buscript failed to load! The script command will be disabled! " +
-                        "If you would like not to see this message, " +
-                        "use `/mv conf enablebuscript false` to disable Buscript from loading.");
-            }
-        }
     }
 
     private void initializeDestinationFactory() {
@@ -1225,11 +1211,6 @@ public class MultiverseCore extends JavaPlugin implements MVPlugin, Core {
     @Deprecated
     public static MultiverseCoreConfiguration getStaticConfig() {
         return MultiverseCoreConfiguration.getInstance();
-    }
-
-    @Override
-    public Buscript getScriptAPI() {
-        return buscript;
     }
 
     public UnsafeCallWrapper getUnsafeCallWrapper() {
